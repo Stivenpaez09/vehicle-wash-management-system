@@ -1,28 +1,30 @@
 package com.mycompany.lavaderoautos.logica;
 
 import com.mycompany.lavaderoautos.persistencia.ControladoraPersistencia;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class Controladora {
     private ControladoraPersistencia controlPersis = null;
 
     public Controladora() {
-        controlPersis = new ControladoraPersistencia();
+        this.controlPersis = new ControladoraPersistencia();
     }
 
     public List<Duenio> buscarDuenios() {
-        return controlPersis.buscarDuenios();
+        return this.controlPersis.buscarDuenios();
     }
 
     public List<Vehiculo> buscarVehiculos(){
-        return controlPersis.buscarVehiculos();
+        return this.controlPersis.buscarVehiculos();
     }
     
     public void crearDuenio(String nombre, String celular) {
         Duenio duenio = new Duenio();
         duenio.setNombre(nombre);
         duenio.setNumero(celular);
-        controlPersis.crearDuenio(duenio);
+        this.controlPersis.crearDuenio(duenio);
     }
 
     public void crearVehiculo(String tipo, String placa, String modelo, String color, String duenioRecibido, String servicio) {
@@ -32,6 +34,11 @@ public class Controladora {
         vehiculo.setModelo(modelo);
         vehiculo.setColor(color);
         vehiculo.setServicio(servicio);
+        
+        ZonedDateTime ahora = ZonedDateTime.now();
+        String horaActual = ahora.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+        
+        vehiculo.setHora(horaActual);
         
         String valor = this.establecerValor(tipo, servicio);
         vehiculo.setValor(valor);
@@ -123,7 +130,7 @@ public class Controladora {
     }
 
     public Vehiculo buscarVehiculo(int id) {
-        return controlPersis.buscarVehiculo(id);
+        return this.controlPersis.buscarVehiculo(id);
     }
 
     public void editarVehiculo(Vehiculo vehi, String tipo, String placa, String modelo, String color, String duenio, String servicio) {
@@ -137,15 +144,84 @@ public class Controladora {
         vehi.setValor(valor);
         Duenio dueEncontrado = this.encontrarDuenio(duenio);
         if (dueEncontrado != null) {
-            if (!vehi.getDuenio().equals(dueEncontrado)) {
-                vehi.getDuenio().eliminarVehiculo(vehi);
+            if (vehi.getDuenio() != null) {
+                if (!vehi.getDuenio().equals(dueEncontrado)) {
+
+                    vehi.getDuenio().eliminarVehiculo(vehi);
+                    vehi.setDuenio(dueEncontrado);
+                    dueEncontrado.agregarVehiculo(vehi);
+                }
+            } else {
                 vehi.setDuenio(dueEncontrado);
                 dueEncontrado.agregarVehiculo(vehi);
             }
         }
-        
         this.controlPersis.editarVehiculo(vehi);
     }
+
+    public String calcularTotal() {
+        List<Vehiculo> listaVehiculos = this.buscarVehiculos();
+        int valores = 0;
+        for (Vehiculo lista : listaVehiculos) {
+            valores += Integer.parseInt(lista.getValor());
+        }
+        String suma = String.valueOf(valores);
+        return suma;
+    }
+
+    public void vaciarVehiculos() {
+        List<Vehiculo> listaVehiculos = this.buscarVehiculos();
+        
+        for (Vehiculo lista : listaVehiculos){
+            int id = lista.getId();
+            this.controlPersis.eliminarVehiculo(id);
+        }
+    }
+
+    public void eliminarDuenio(int id) {
+        this.controlPersis.eliminarDuenio(id);
+    }
+
+    public Duenio buscarDuenio(int id) {
+        return this.controlPersis.buscarDuenio(id);
+    }
+
+    public void editarDuenio(Duenio due, String nombre, String celular) {
+        due.setNombre(nombre);
+        due.setNumero(celular);
+        
+        this.controlPersis.editarDuenio(due);
+    }
+
+    public boolean validarDatos(int id, String nombre, String celular) {
+        List<Duenio> listaDuenios = this.buscarDuenios();
+        for(Duenio lista : listaDuenios){
+            if(lista.getId() != id){
+                if(lista.getNombre().equalsIgnoreCase(nombre)){
+                    return false;
+                }
+            }
+            
+        }
+        return true;
+        
+    }
+
+    public String verificarNombreDuenio(Duenio duenio) {
+        if(duenio == null){
+            return "no existe";
+        }
+        return duenio.getNombre();
+    }
+
+    public String verificarNumeroDuenio(Duenio duenio) {
+        if(duenio == null){
+            return "no existe";
+        }
+        return duenio.getNumero();
+    }
+
+    
     
     
 }

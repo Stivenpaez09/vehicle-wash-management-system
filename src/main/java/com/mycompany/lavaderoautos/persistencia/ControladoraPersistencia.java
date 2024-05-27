@@ -12,36 +12,56 @@ public class ControladoraPersistencia {
     DuenioJpaController dueJpa = new DuenioJpaController();
 
     public List<Duenio> buscarDuenios() {
-        return dueJpa.findDuenioEntities();
+        return this.dueJpa.findDuenioEntities();
     }
 
     public List<Vehiculo> buscarVehiculos() {
-        return vehiJpa.findVehiculoEntities();
+        return this.vehiJpa.findVehiculoEntities();
     }
 
     public void crearDuenio(Duenio duenio) {
-        dueJpa.create(duenio);
+        this.dueJpa.create(duenio);
     }
 
     public void crearVehiculo(Vehiculo vehiculo) {
-        vehiJpa.create(vehiculo);
+        this.vehiJpa.create(vehiculo);
     }
 
     public void eliminarVehiculo(int id) {
         try {
-            vehiJpa.destroy(id);
+            this.vehiJpa.destroy(id);
         } catch (NonexistentEntityException ex) {
             Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     public Vehiculo buscarVehiculo(int id) {
-        return vehiJpa.findVehiculo(id);
+        return this.vehiJpa.findVehiculo(id);
     }
 
     public void editarVehiculo(Vehiculo vehi) {
         try {
-            vehiJpa.edit(vehi);
+            this.vehiJpa.edit(vehi);
+        } catch (Exception ex) {
+            Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void eliminarDuenio(int id) {
+        try {
+            this.dueJpa.destroy(id);
+        } catch (NonexistentEntityException ex) {
+            Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public Duenio buscarDuenio(int id) {
+        return this.dueJpa.findDuenio(id);
+    }
+
+    public void editarDuenio(Duenio due) {
+        try {
+            this.dueJpa.edit(due);
         } catch (Exception ex) {
             Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
         }

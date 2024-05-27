@@ -32,6 +32,7 @@ public class VerVehiculo extends javax.swing.JFrame {
         btnEditar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnSesion = new javax.swing.JButton();
+        btnVaciar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaVehiculos = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
@@ -51,6 +52,11 @@ public class VerVehiculo extends javax.swing.JFrame {
         btnTotal.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnTotal.setIcon(new javax.swing.ImageIcon("C:\\Users\\USUARIO\\Documents\\recursos lavadero\\total.png")); // NOI18N
         btnTotal.setText("Total ingresado");
+        btnTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTotalActionPerformed(evt);
+            }
+        });
 
         btnRegresar.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnRegresar.setIcon(new javax.swing.ImageIcon("C:\\Users\\USUARIO\\Documents\\recursos lavadero\\back.png")); // NOI18N
@@ -64,6 +70,11 @@ public class VerVehiculo extends javax.swing.JFrame {
         btnUsuario.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnUsuario.setIcon(new javax.swing.ImageIcon("C:\\Users\\USUARIO\\Documents\\recursos lavadero\\user.png")); // NOI18N
         btnUsuario.setText("Ver usuarios");
+        btnUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUsuarioActionPerformed(evt);
+            }
+        });
 
         btnEditar.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnEditar.setIcon(new javax.swing.ImageIcon("C:\\Users\\USUARIO\\Documents\\recursos lavadero\\edit.png")); // NOI18N
@@ -87,6 +98,15 @@ public class VerVehiculo extends javax.swing.JFrame {
         btnSesion.setIcon(new javax.swing.ImageIcon("C:\\Users\\USUARIO\\Documents\\recursos lavadero\\password.png")); // NOI18N
         btnSesion.setText("Editar sesion");
 
+        btnVaciar.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        btnVaciar.setIcon(new javax.swing.ImageIcon("C:\\Users\\USUARIO\\Documents\\recursos lavadero\\delete all.png")); // NOI18N
+        btnVaciar.setText("Vaciar tabla");
+        btnVaciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVaciarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -99,19 +119,22 @@ public class VerVehiculo extends javax.swing.JFrame {
                     .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnRegresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnRegresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnVaciar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(btnEliminar)
                 .addGap(18, 18, 18)
                 .addComponent(btnEditar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(btnEliminar)
+                .addGap(18, 18, 18)
                 .addComponent(btnTotal)
                 .addGap(18, 18, 18)
+                .addComponent(btnVaciar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
                 .addComponent(btnUsuario)
                 .addGap(18, 18, 18)
                 .addComponent(btnSesion)
@@ -138,6 +161,7 @@ public class VerVehiculo extends javax.swing.JFrame {
 
         txtTotal.setEditable(false);
         txtTotal.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        txtTotal.setBorder(null);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -174,7 +198,7 @@ public class VerVehiculo extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 14, Short.MAX_VALUE))
+                .addGap(0, 10, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -234,6 +258,22 @@ public class VerVehiculo extends javax.swing.JFrame {
         }          
     }//GEN-LAST:event_btnEditarActionPerformed
 
+    private void btnTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTotalActionPerformed
+        String total = this.control.calcularTotal();
+        txtTotal.setText("$ "+total+" pesos");
+    }//GEN-LAST:event_btnTotalActionPerformed
+
+    private void btnVaciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVaciarActionPerformed
+        this.control.vaciarVehiculos();
+    }//GEN-LAST:event_btnVaciarActionPerformed
+
+    private void btnUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuarioActionPerformed
+        VerDuenio pVerDuenio = new VerDuenio(control);
+        pVerDuenio.setVisible(true);
+        pVerDuenio.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_btnUsuarioActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -243,6 +283,7 @@ public class VerVehiculo extends javax.swing.JFrame {
     private javax.swing.JButton btnSesion;
     private javax.swing.JButton btnTotal;
     private javax.swing.JButton btnUsuario;
+    private javax.swing.JButton btnVaciar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
@@ -260,13 +301,15 @@ public class VerVehiculo extends javax.swing.JFrame {
             }     
         };
         
-        String titulos[] = {"Id", "Tipo", "Placa", "Modelo", "Color", "Servicio", "Dueño", "Celular", "Valor"};
+        String titulos[] = {"Id", "Tipo", "Placa", "Modelo", "Color", "Servicio", "Dueño", "Celular", "Hora", "Valor"};
         modeloTabla.setColumnIdentifiers(titulos);
         
         List<Vehiculo> listaVehiculos = control.buscarVehiculos();
         
         if(listaVehiculos != null){
            for(Vehiculo lista : listaVehiculos){
+               String nombreDuenio = this.control.verificarNombreDuenio(lista.getDuenio());
+               String numeroDuenio = this.control.verificarNumeroDuenio(lista.getDuenio());
             Object[] objeto = {
                 lista.getId(),
                 lista.getTipo(),
@@ -274,8 +317,9 @@ public class VerVehiculo extends javax.swing.JFrame {
                 lista.getModelo(),
                 lista.getColor(),
                 lista.getServicio(),
-                lista.getDuenio().getNombre(),
-                lista.getDuenio().getNumero(),
+                nombreDuenio,
+                numeroDuenio,
+                lista.getHora(),
                 lista.getValor()
             };
             modeloTabla.addRow(objeto);

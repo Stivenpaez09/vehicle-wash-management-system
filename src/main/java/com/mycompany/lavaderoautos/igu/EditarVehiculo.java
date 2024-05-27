@@ -11,7 +11,7 @@ public class EditarVehiculo extends javax.swing.JFrame {
     private Controladora control = null;
     private int id;
     private Vehiculo vehi;
-    VerVehiculo pVer= null;
+    private VerVehiculo pVer= null;
     public EditarVehiculo(Controladora control, int id) {
         initComponents();
         this.control =  control;
@@ -46,6 +46,7 @@ public class EditarVehiculo extends javax.swing.JFrame {
         btnLimpiar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         cmbServicio = new javax.swing.JComboBox<>();
+        btnNuevoDuenio = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -112,6 +113,14 @@ public class EditarVehiculo extends javax.swing.JFrame {
         cmbServicio.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         cmbServicio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "Lavado exterior", "Lavado general", "Encerado" }));
 
+        btnNuevoDuenio.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        btnNuevoDuenio.setText("¿Deseas Ingresar un nuevo dueño?");
+        btnNuevoDuenio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoDuenioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -144,18 +153,23 @@ public class EditarVehiculo extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addGap(18, 18, 18)
-                                .addComponent(cmbServicio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(0, 29, Short.MAX_VALUE))
+                                .addComponent(cmbServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(75, 75, 75))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(btnNuevoDuenio)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(btnNuevoDuenio)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(cmbVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -183,7 +197,7 @@ public class EditarVehiculo extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         btnRegresar.setIcon(new javax.swing.ImageIcon("C:\\Users\\USUARIO\\Documents\\recursos lavadero\\back.png")); // NOI18N
@@ -201,46 +215,49 @@ public class EditarVehiculo extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(189, 189, 189)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
+                                .addGap(46, 46, 46)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(62, 62, 62)
-                                .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(147, 147, 147)
-                        .addComponent(jLabel1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(120, 120, 120)
+                                .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(16, 16, 16)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
+                        .addGap(83, 83, 83)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(72, 72, 72)
                         .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(415, 415, 415))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 641, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -283,11 +300,19 @@ public class EditarVehiculo extends javax.swing.JFrame {
         this.cargarDatos();
     }//GEN-LAST:event_formWindowOpened
 
+    private void btnNuevoDuenioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoDuenioActionPerformed
+        IngresarDuenioEditar pDuenio = new IngresarDuenioEditar(control, id);
+        pDuenio.setVisible(true);
+        pDuenio.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_btnNuevoDuenioActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton btnNuevoDuenio;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JComboBox<String> cmbDuenio;
     private javax.swing.JComboBox<String> cmbServicio;
@@ -313,41 +338,45 @@ public class EditarVehiculo extends javax.swing.JFrame {
         
         if (vehi == null) {
             JOptionPane.showMessageDialog(null, "Vehículo no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        
-        if(vehi.getTipo().equals("Motocicleta")){
-            cmbVehiculo.setSelectedIndex(1);
-        }
-        if (vehi.getTipo().equals("Automovil")){
-            cmbVehiculo.setSelectedIndex(2);
-        }
-        if(vehi.getTipo().equals("Camioneta")){
-            cmbVehiculo.setSelectedIndex(3);
-        }
-        
-        txtPlaca.setText(vehi.getPlaca());
-        txtModelo.setText(vehi.getModelo());
-        txtColor.setText(vehi.getColor());
-        
-        String duenio = vehi.getDuenio().getNombre();
-        int cant = cmbDuenio.getHeight();
-        
-        for(int i=0; i<cant; i++){
-            if(String.valueOf(cmbDuenio.getItemAt(i)).equals(duenio)){
-                cmbDuenio.setSelectedIndex(i);
+        } else {
+            if (vehi.getTipo().equals("Motocicleta")) {
+                cmbVehiculo.setSelectedIndex(1);
+            }
+            if (vehi.getTipo().equals("Automovil")) {
+                cmbVehiculo.setSelectedIndex(2);
+            }
+            if (vehi.getTipo().equals("Camioneta")) {
+                cmbVehiculo.setSelectedIndex(3);
+            }
+
+            txtPlaca.setText(vehi.getPlaca());
+            txtModelo.setText(vehi.getModelo());
+            txtColor.setText(vehi.getColor());
+            
+            
+            if(vehi.getDuenio() != null){
+                String duenio = vehi.getDuenio().getNombre();
+                int cant = cmbDuenio.getHeight();
+                for (int i = 0; i < cant; i++) {
+                    if (String.valueOf(cmbDuenio.getItemAt(i)).equals(duenio)) {
+                        cmbDuenio.setSelectedIndex(i);
+                    }
+                }  
+            }
+            
+
+            if (vehi.getServicio().equals("Lavado exterior")) {
+                cmbServicio.setSelectedIndex(1);
+            }
+            if (vehi.getServicio().equals("Lavado general")) {
+                cmbServicio.setSelectedIndex(2);
+            }
+            if (vehi.getServicio().equals("Encerado")) {
+                cmbServicio.setSelectedIndex(3);
             }
         }
         
-        if(vehi.getServicio().equals("Lavado exterior")){
-            cmbServicio.setSelectedIndex(1);
-        }
-        if(vehi.getServicio().equals("Lavado general")){
-            cmbServicio.setSelectedIndex(2);
-        }
-        if(vehi.getServicio().equals("Encerado")){
-            cmbServicio.setSelectedIndex(3);
-        }
+        
    }
     
     private void regresar() {

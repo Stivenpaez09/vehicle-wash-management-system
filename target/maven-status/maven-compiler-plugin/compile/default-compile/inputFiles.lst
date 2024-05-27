@@ -5,9 +5,12 @@ C:\Users\USUARIO\Documents\NetBeansProjects\LavaderoAutos\src\main\java\com\myco
 C:\Users\USUARIO\Documents\NetBeansProjects\LavaderoAutos\src\main\java\com\mycompany\lavaderoautos\igu\EditarVehiculo.java
 C:\Users\USUARIO\Documents\NetBeansProjects\LavaderoAutos\src\main\java\com\mycompany\lavaderoautos\igu\VerVehiculo.java
 C:\Users\USUARIO\Documents\NetBeansProjects\LavaderoAutos\src\main\java\com\mycompany\lavaderoautos\persistencia\ControladoraPersistencia.java
+C:\Users\USUARIO\Documents\NetBeansProjects\LavaderoAutos\src\main\java\com\mycompany\lavaderoautos\igu\IngresarDuenioEditar.java
+C:\Users\USUARIO\Documents\NetBeansProjects\LavaderoAutos\src\main\java\com\mycompany\lavaderoautos\igu\VerDuenio.java
 C:\Users\USUARIO\Documents\NetBeansProjects\LavaderoAutos\src\main\java\com\mycompany\lavaderoautos\logica\Controladora.java
 C:\Users\USUARIO\Documents\NetBeansProjects\LavaderoAutos\src\main\java\com\mycompany\lavaderoautos\persistencia\DuenioJpaController.java
 C:\Users\USUARIO\Documents\NetBeansProjects\LavaderoAutos\src\main\java\com\mycompany\lavaderoautos\persistencia\VehiculoJpaController.java
+C:\Users\USUARIO\Documents\NetBeansProjects\LavaderoAutos\src\main\java\com\mycompany\lavaderoautos\igu\EditarDuenio.java
 C:\Users\USUARIO\Documents\NetBeansProjects\LavaderoAutos\src\main\java\com\mycompany\lavaderoautos\persistencia\exceptions\IllegalOrphanException.java
 C:\Users\USUARIO\Documents\NetBeansProjects\LavaderoAutos\src\main\java\com\mycompany\lavaderoautos\igu\Login.java
 C:\Users\USUARIO\Documents\NetBeansProjects\LavaderoAutos\src\main\java\com\mycompany\lavaderoautos\igu\IngresarVehiculo.java

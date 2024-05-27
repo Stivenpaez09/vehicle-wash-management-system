@@ -20,6 +20,7 @@ public class Vehiculo implements Serializable {
     private String color;
     private String servicio;
     private String Valor;
+    private String hora;
     @ManyToOne
     @JoinColumn(name = "fk_duenio")
     private Duenio duenio;
@@ -27,7 +28,7 @@ public class Vehiculo implements Serializable {
     public Vehiculo() {
     }
 
-    public Vehiculo(int id, String tipo, String placa, String modelo, String color, String servicio, String Valor, Duenio duenio) {
+    public Vehiculo(int id, String tipo, String placa, String modelo, String color, String servicio, String Valor, String hora, Duenio duenio) {
         this.id = id;
         this.tipo = tipo;
         this.placa = placa;
@@ -35,10 +36,9 @@ public class Vehiculo implements Serializable {
         this.color = color;
         this.servicio = servicio;
         this.Valor = Valor;
+        this.hora = hora;
         this.duenio = duenio;
     }
-
-    
 
     public int getId() {
         return id;
@@ -96,6 +96,14 @@ public class Vehiculo implements Serializable {
         this.Valor = Valor;
     }
 
+    public String getHora() {
+        return hora;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
+    }
+
     public Duenio getDuenio() {
         return duenio;
     }
@@ -103,6 +111,5 @@ public class Vehiculo implements Serializable {
     public void setDuenio(Duenio duenio) {
         this.duenio = duenio;
     }
-    
-    
+
 }

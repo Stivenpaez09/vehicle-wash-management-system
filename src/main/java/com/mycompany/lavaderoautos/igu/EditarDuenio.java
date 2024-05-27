@@ -1,16 +1,20 @@
 package com.mycompany.lavaderoautos.igu;
 
 import com.mycompany.lavaderoautos.logica.Controladora;
+import com.mycompany.lavaderoautos.logica.Duenio;
 import javax.swing.JOptionPane;
 
-public class IngresarDuenio extends javax.swing.JFrame {
+public class EditarDuenio extends javax.swing.JFrame {
 
     private Controladora control = null;
-    private IngresarVehiculo pVehiculo = null;
-    public IngresarDuenio(Controladora control) {
+    private VerDuenio pVerDuenio = null;
+    private int id;
+    private Duenio due;
+    public EditarDuenio(Controladora control, int id) {
         initComponents();
         this.control = control;
-        this.pVehiculo = new IngresarVehiculo();
+        this.pVerDuenio = new VerDuenio(control);
+        this.id = id;
     }
 
     /**
@@ -29,18 +33,23 @@ public class IngresarDuenio extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         txtCelular = new javax.swing.JTextField();
-        btnGuardar = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setForeground(new java.awt.Color(102, 204, 255));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 204, 255));
-        jLabel1.setText("INGRESA UN USUARIO");
+        jLabel1.setText("EDITAR USUARIO");
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         jLabel4.setText("Nombre:");
@@ -52,11 +61,11 @@ public class IngresarDuenio extends javax.swing.JFrame {
 
         txtCelular.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
 
-        btnGuardar.setIcon(new javax.swing.ImageIcon("C:\\Users\\USUARIO\\Documents\\recursos lavadero\\diskette.png")); // NOI18N
-        btnGuardar.setText("Guardar");
-        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+        btnEditar.setIcon(new javax.swing.ImageIcon("C:\\Users\\USUARIO\\Documents\\recursos lavadero\\diskette.png")); // NOI18N
+        btnEditar.setText("Guardar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarActionPerformed(evt);
+                btnEditarActionPerformed(evt);
             }
         });
 
@@ -86,7 +95,7 @@ public class IngresarDuenio extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 12, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -103,7 +112,7 @@ public class IngresarDuenio extends javax.swing.JFrame {
                 .addGap(43, 43, 43)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
@@ -123,21 +132,19 @@ public class IngresarDuenio extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(44, 44, 44)
-                                .addComponent(jLabel2)))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 24, Short.MAX_VALUE)
-                        .addComponent(jLabel1)))
+                        .addGap(44, 44, 44)
+                        .addComponent(jLabel2)))
                 .addContainerGap(31, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(84, 84, 84))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,29 +181,34 @@ public class IngresarDuenio extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        this.pantallaVehiculo();
+        this.pantallaVerDuenio();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         String nombre = txtNombre.getText();
         String celular = txtCelular.getText();
-        boolean validar = this.control.validarDuenio(nombre);
+        int id = due.getId();
+        boolean validar = this.control.validarDatos(id, nombre, celular);
         if(!validar){
-            JOptionPane.showMessageDialog(null, "No se ha podido guardar el usuario, cambie el nombre del usuario", "Error al guardar usuario", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "No se ha podido editar el usuario, cambie el nombre del usuario", "Error al editar usuario", JOptionPane.ERROR_MESSAGE);
         } else {
-           this.control.crearDuenio(nombre, celular);
-           JOptionPane.showMessageDialog(null, "Se ha guardado con exito el Usuario", "Usuario guardado", JOptionPane.INFORMATION_MESSAGE);
-            this.pantallaVehiculo();
+           this.control.editarDuenio(due, nombre, celular);
+           JOptionPane.showMessageDialog(null, "Se ha editado con exito el Usuario", "Usuario editado", JOptionPane.INFORMATION_MESSAGE);
+            this.pantallaVerDuenio();
             
         }
         
         
-    }//GEN-LAST:event_btnGuardarActionPerformed
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        this.cargarDatos();
+    }//GEN-LAST:event_formWindowOpened
 
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel jLabel1;
@@ -209,10 +221,16 @@ public class IngresarDuenio extends javax.swing.JFrame {
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 
-    private void pantallaVehiculo(){
-        this.pVehiculo.setVisible(true);
-        this.pVehiculo.setLocationRelativeTo(null);
+    private void pantallaVerDuenio(){
+        this.pVerDuenio.setVisible(true);
+        this.pVerDuenio.setLocationRelativeTo(null);
         this.dispose(); 
+    }
+
+    private void cargarDatos() {
+        this.due = this.control.buscarDuenio(id);
+        txtNombre.setText(due.getNombre());
+        txtCelular.setText(due.getNumero());
     }
     
 }

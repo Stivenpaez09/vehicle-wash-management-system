@@ -3,14 +3,14 @@ package com.mycompany.lavaderoautos.igu;
 import com.mycompany.lavaderoautos.logica.Controladora;
 import javax.swing.JOptionPane;
 
-public class IngresarDuenio extends javax.swing.JFrame {
+public class IngresarDuenioEditar extends javax.swing.JFrame {
 
     private Controladora control = null;
-    private IngresarVehiculo pVehiculo = null;
-    public IngresarDuenio(Controladora control) {
+    private EditarVehiculo pVehiculo = null;
+    public IngresarDuenioEditar(Controladora control, int id) {
         initComponents();
         this.control = control;
-        this.pVehiculo = new IngresarVehiculo();
+        this.pVehiculo = new EditarVehiculo(control, id);
     }
 
     /**
