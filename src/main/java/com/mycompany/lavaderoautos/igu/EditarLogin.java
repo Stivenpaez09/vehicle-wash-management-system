@@ -1,14 +1,18 @@
 package com.mycompany.lavaderoautos.igu;
 
 import com.mycompany.lavaderoautos.logica.Controladora;
+import com.mycompany.lavaderoautos.logica.Login;
 import javax.swing.JOptionPane;
 
-public class Login extends javax.swing.JFrame {
+public class EditarLogin extends javax.swing.JFrame {
 
     private Controladora control = null;
-    public Login() {
+    private Login user;
+    
+        
+    public EditarLogin(Controladora control) {
         initComponents();
-        control = new Controladora();
+        this.control = control;
     }
 
     /**
@@ -25,15 +29,20 @@ public class Login extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        btnIniciar = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
         txtContra = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 204, 255));
-        jLabel1.setText("INICIA SESION");
+        jLabel1.setText("EDITAR SESION");
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel2.setText("Usuario: ");
@@ -43,11 +52,11 @@ public class Login extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel3.setText("Contraseña:");
 
-        btnIniciar.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        btnIniciar.setText("Iniciar sesion");
-        btnIniciar.addActionListener(new java.awt.event.ActionListener() {
+        btnEditar.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        btnEditar.setText("Editar sesion");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIniciarActionPerformed(evt);
+                btnEditarActionPerformed(evt);
             }
         });
 
@@ -73,19 +82,17 @@ public class Login extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel2)))
                         .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(108, 108, 108)
-                        .addComponent(btnIniciar))
+                        .addComponent(btnEditar))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(txtContra, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -109,7 +116,7 @@ public class Login extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(txtContra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
-                .addComponent(btnIniciar)
+                .addComponent(btnEditar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnRegresar)
                 .addContainerGap(14, Short.MAX_VALUE))
@@ -130,31 +137,32 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        PantallaInicial pInicial = new PantallaInicial();
-        pInicial.setVisible(true);
-        pInicial.setLocationRelativeTo(null);
+        VerVehiculo pVer = new VerVehiculo(control);
+        pVer.setVisible(true);
+        pVer.setLocationRelativeTo(null);
         this.dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
-    private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         String usuario = txtUsuario.getText();
         char[] contrasenia = txtContra.getPassword();
         String contra = new String(contrasenia);
-        boolean validar = this.control.validarLogin(usuario, contra);
-        if(validar){
-            VerVehiculo pVehiculo = new VerVehiculo(control);
-            pVehiculo.setVisible(true);
-            pVehiculo.setLocationRelativeTo(null);
-            this.dispose();
-        } else {
-            JOptionPane.showMessageDialog(null, "El usuario o la contraseña son incorrectas", "Error al iniciar sesion", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_btnIniciarActionPerformed
+        this.control.editarLogin(user, usuario, contra);
+        JOptionPane.showMessageDialog(null, "El usuario se ha editado con exito", "Usuario editado con exito", JOptionPane.INFORMATION_MESSAGE);
+        IngresarLogin pLogin = new IngresarLogin();
+        pLogin.setVisible(true);
+        pLogin.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        this.cargarDatos();
+    }//GEN-LAST:event_formWindowOpened
 
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnIniciar;
+    private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -163,4 +171,11 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtContra;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
+
+    private void cargarDatos() {
+        this.user = this.control.buscarLogin(1);
+        txtUsuario.setText(user.getUsuario());
+        txtContra.setText(user.getContrasenia());
+   }
+    
 }

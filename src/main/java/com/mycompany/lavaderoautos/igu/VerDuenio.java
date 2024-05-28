@@ -141,7 +141,7 @@ public class VerDuenio extends javax.swing.JFrame {
             if(tablaDuenios.getSelectedRow()!=-1){
                 int id = Integer.parseInt(String.valueOf(tablaDuenios.getValueAt(tablaDuenios.getSelectedRow(), 0)));
                 this.control.eliminarDuenio(id);
-                JOptionPane.showMessageDialog(null, "Vehiculo eliminado exitosamente", "Vehiculo eliminado", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Dueño eliminado exitosamente", "Dueño eliminado", JOptionPane.INFORMATION_MESSAGE);
                 this.cargarTabla();
             } else {
                 JOptionPane.showMessageDialog(null, "Seleciona la celda que deseas eliminar", "Error al eliminar la celda", JOptionPane.ERROR_MESSAGE);

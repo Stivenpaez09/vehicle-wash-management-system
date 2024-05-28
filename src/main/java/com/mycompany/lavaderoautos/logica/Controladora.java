@@ -117,11 +117,16 @@ public class Controladora {
     }
 
     public boolean validarLogin(String usuario, String contra) {
-        if(usuario.equals("Rodrigo Paez")){
-            if (contra.equals("CuentasLavaderoLa35.")){
-                return true;
+        List<Login> listaLogin = this.buscarLogins();
+
+        for (Login lista : listaLogin) {
+            if (lista.getUsuario().equals(usuario)) {
+                if (lista.getContrasenia().equals(contra)) {
+                    return true;
+                }
             }
         }
+
         return false;
     }
 
@@ -221,7 +226,20 @@ public class Controladora {
         return duenio.getNumero();
     }
 
-    
-    
-    
+    public List<Login> buscarLogins() {
+        return this.controlPersis.buscarLogins();
+    }
+
+    public Login buscarLogin(int id) {
+        return this.controlPersis.buscarLogin(id);
+    }
+
+    public void editarLogin(Login user, String usuario, String contra) {
+        user.setUsuario(usuario);
+        user.setContrasenia(contra);
+        
+        this.controlPersis.editarLogin(user);
+    }
+
+
 }

@@ -97,6 +97,11 @@ public class VerVehiculo extends javax.swing.JFrame {
         btnSesion.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnSesion.setIcon(new javax.swing.ImageIcon("C:\\Users\\USUARIO\\Documents\\recursos lavadero\\password.png")); // NOI18N
         btnSesion.setText("Editar sesion");
+        btnSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSesionActionPerformed(evt);
+            }
+        });
 
         btnVaciar.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnVaciar.setIcon(new javax.swing.ImageIcon("C:\\Users\\USUARIO\\Documents\\recursos lavadero\\delete all.png")); // NOI18N
@@ -264,7 +269,15 @@ public class VerVehiculo extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTotalActionPerformed
 
     private void btnVaciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVaciarActionPerformed
-        this.control.vaciarVehiculos();
+        List<Vehiculo> lista = this.control.buscarVehiculos();
+        if(!lista.isEmpty()){
+            this.control.vaciarVehiculos();
+            JOptionPane.showMessageDialog(null, "Tabla vaciada exitosamente", "Tabla vaciada con exito", JOptionPane.INFORMATION_MESSAGE);
+            this.cargarTabla();
+        } else {
+            JOptionPane.showMessageDialog(null, "No se puede Vaciar la tabla porque no tiene registros para eliminar", "Error al vaciar la tabla", JOptionPane.INFORMATION_MESSAGE);            
+        }
+        
     }//GEN-LAST:event_btnVaciarActionPerformed
 
     private void btnUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuarioActionPerformed
@@ -273,6 +286,13 @@ public class VerVehiculo extends javax.swing.JFrame {
         pVerDuenio.setLocationRelativeTo(null);
         this.dispose();
     }//GEN-LAST:event_btnUsuarioActionPerformed
+
+    private void btnSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSesionActionPerformed
+        EditarLogin pEditLogin = new EditarLogin(control);
+        pEditLogin.setVisible(true);
+        pEditLogin.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_btnSesionActionPerformed
 
     
 

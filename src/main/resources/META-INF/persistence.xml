@@ -4,6 +4,7 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>com.mycompany.lavaderoautos.logica.Duenio</class>
     <class>com.mycompany.lavaderoautos.logica.Vehiculo</class>
+    <class>com.mycompany.lavaderoautos.logica.Login</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/lavadero?serverTimezone=UTC"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

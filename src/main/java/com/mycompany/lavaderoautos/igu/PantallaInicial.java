@@ -138,7 +138,7 @@ public class PantallaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaActionPerformed
-        Login pLog = new Login();
+        IngresarLogin pLog = new IngresarLogin();
         pLog.setVisible(true);
         pLog.setLocationRelativeTo(null);
         this.dispose();
